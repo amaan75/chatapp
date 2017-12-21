@@ -11,4 +11,21 @@ export default class Store {
         }
     }
 
+
+    addMessage(index, message = {}) {
+        this.messages = this.messages.set(index, message);
+    }
+
+    getMessages() {
+        return this.messages.valueSeq();
+    }
+
+
+    addChannel(index, channel = {}) {
+        this.channels = this.channels.set(index, channel);
+    }
+
+    getChannel() {
+        return this.channels.valueSeq();
+    }
 }

@@ -33,10 +33,11 @@ export default class Messenger extends Component {
         for (let i = 0; i < 100; i++) {
 
             let isMe = false;
-            if (i % 2 == 0) {
+            if (i % 2 === 0) {
                 isMe = true;
             }
             const newMsg = {
+                _id: i,
                 author: `Author ${i}`,
                 body: `Message body ${i}`,
                 avatar: avatar,
