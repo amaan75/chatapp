@@ -1,0 +1,243 @@
+@import "_variable";
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600');
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  color: $body-color;
+  font-size: 13px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.app-messenger {
+  display: flex;
+  flex-direction: column;
+
+  .header {
+    height: $header-height; //    background: red;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid $border-color;
+
+    .left {
+      flex-shrink: 2;
+      flex-grow: 1;
+
+      .actions {
+        line-height: $header-height;
+        padding: 0 10px;
+
+        button {}
+      }
+    }
+
+    .content {
+      flex-grow: 4;
+      flex-shrink: 1;
+
+      h2 {
+        line-height: $header-height;
+        text-align: center;
+      }
+    }
+
+    .right {
+      flex-shrink: 2;
+      flex-grow: 1;
+
+      .user-bar {
+        line-height: $header-height;
+        display: flex;
+        justify-content: flex-end;
+
+        .profile-image {
+          line-height: $header-height;
+
+          img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin: 10px 0 0;
+          }
+        }
+
+        .profile-name {
+          padding-right: 10px;
+        }
+      }
+    }
+  }
+
+  .main {
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+
+    .sidebar-left {
+      flex-shrink: 2;
+      flex-grow: 1;
+      border-right: 1px solid $border-color;
+    }
+
+    .sidebar-right {
+      flex-shrink: 2;
+      flex-grow: 2;
+      border-left: 1px solid $border-color;
+    }
+
+    .content {
+      flex-grow: 4;
+      flex-shrink: 1;
+      display: flex;
+      flex-direction: column;
+
+      .messages {
+        flex-grow: 1;
+      }
+
+      .messenger-input {
+        border-top: $border-color;
+        height: 50px;
+        display: flex;
+        flex-direction: row;
+
+        .text-input {
+          flex-grow: 1;
+
+          textarea {
+            border: 0 none;
+            width: 100%;
+            height: 100%;
+            padding: 8px 12px;
+          }
+        }
+
+        .actions {
+          button.send {
+            background: $primary-color;
+            color: #FFF;
+            border: 0 none;
+            padding: 8px 12px;
+            line-height: 50px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow-y: auto;
+  height: 100%;
+
+  .message {
+    display: flex;
+    margin: 50px 0;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    .message-user-image {
+      img {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+      }
+    }
+
+    .message-body {
+      padding-left: 10px;
+
+      .message-author {}
+
+      .message-text {
+        background: $body-color;
+        color: #fff;
+        padding: 10px;
+        border-radius: 10px;
+      }
+    }
+
+    &.me {
+      justify-content: flex-start;
+
+      .message-body {
+        .message-text {
+          background: $primary-color;
+        }
+      }
+    }
+  }
+}
+
+.channels {
+  .channel {
+    display: flex;
+    margin: 12px;
+    .user-image {
+      img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+      }
+    }
+
+    .channel-info {
+      h2 {
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      p {}
+    }
+  }
+}
+
+.members {
+  .member {
+    display: flex;
+    border-bottom: 1px solid $border-color;
+    padding: 8px 0;
+
+    .user-image {
+      width: 30px;
+
+      img {
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+      }
+    }
+
+    .member-info {
+      flex-grow: 1;
+
+      h2 {
+        font-size: 14px;
+      }
+
+      p {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+h2.title {
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+}
