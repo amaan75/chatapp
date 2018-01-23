@@ -1,9 +1,9 @@
 import {OrderedMap} from 'immutable'
 
 const users = new OrderedMap({
-    1: {_id: 1, name: `Amaanullah`, created: new Date()},
-    2: {_id: 2, name: `Ibrahim`, created: new Date()},
-    3: {_id: 3, name: `Ashu`, created: new Date()},
+    '1': {_id: '1', name: `Amaanullah`, created: new Date()},
+    '2': {_id: '2', name: `Ibrahim`, created: new Date()},
+    '3': {_id: '3', name: `Ashu`, created: new Date()},
 });
 
 export default class Store {
@@ -55,6 +55,12 @@ export default class Store {
 
     getMembersFromChannel(channel) {
         const members = [];
+        if (channel) {
+            channel.members.map((value, key) => {
+                const member = users.get(key);
+                members.push(member);
+            })
+        }
         return members;
     }
 

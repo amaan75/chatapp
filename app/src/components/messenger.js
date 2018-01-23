@@ -95,10 +95,10 @@ export default class Messenger extends Component {
         const messages = store.getMessagesFromChannel(activeChannel);//store.getMessages();
         const members = store.getMembersFromChannel(activeChannel);
 
-        if (activeChannel) {
-            console.log(`The active channel is ${activeChannel}`);
-            console.log(`Messages in channel${activeChannel._id} and messages are${messages}`)
-        }
+        // if (activeChannel) {
+        //   console.log(`The active channel is ${activeChannel}`);
+        //   console.log(`Messages in channel${activeChannel._id} and messages are${messages}`)
+        //}
 
         return (<div style={style} className="app-messenger">
             <div className="header">
@@ -194,8 +194,8 @@ export default class Messenger extends Component {
                                         <img src={avatar} alt="empty avatar"/>
                                     </div>
                                     <div className="member-info">
-                                        <h2>Muhammad Amaanullah</h2>
-                                        <p>Joined: 2 days ago</p>
+                                        <h2>{member.name}</h2>
+                                        <p>Joined: 3 days ago</p>
                                     </div>
                                 </div>
                             )
