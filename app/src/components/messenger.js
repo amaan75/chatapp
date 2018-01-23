@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {OrderedMap} from 'immutable';
 import avatar from '../images/avatar.jpg';
 import classNames from 'classnames';
+import _ from 'lodash';
 
 
 export default class Messenger extends Component {
@@ -10,7 +11,7 @@ export default class Messenger extends Component {
         super(props);
         this.state = {
             height: window.innerHeight,
-            messages: []
+            newMessage: 'Hello there...',
         };
         this._onResize = this._onResize.bind(this);
     }
@@ -173,7 +174,9 @@ export default class Messenger extends Component {
                     </div>
                     <div className="messenger-input">
                         <div className="text-input">
-                            <textarea placeholder="Write your message"/>
+                            <textarea onChange={(event) => {
+                                this.setState({newMessage: _.get(event, 'target.value')});
+                            }} value={this.state.newMessage} placeholder="Write your message"/>
                         </div>
                         <div className="actions">
                             <button className="send">Send</button>
