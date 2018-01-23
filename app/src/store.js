@@ -13,12 +13,16 @@ export default class Store {
         this.channels = new OrderedMap();
         this.activeChannelId = null;
         this.user = {
-            _id: 0,
+            _id: '1',
             name: 'Amaanullah',
             created: new Date(),
         }
     }
 
+
+    getCurrentUser() {
+        return this.user;
+    }
 
     setActiveChannel(activeChannelId) {
         this.activeChannelId = activeChannelId;

@@ -14,6 +14,7 @@ export default class Messenger extends Component {
             newMessage: 'Hello there...',
         };
         this._onResize = this._onResize.bind(this);
+        this.handleSend = this.handleSend.bind(this);
     }
 
     _onResize() {
@@ -27,6 +28,26 @@ export default class Messenger extends Component {
 
         window.addEventListener(`resize`, this._onResize);
         this.addTestMessages();
+    }
+
+    handleSend() {
+        const {newMessage} = this.state;
+        const {store} = this.props;
+
+        const messageId = new ObjectId().toString();
+        const channel = store.getActiveChannel();
+        const channelId = _.get(channel, '_id', null);
+
+        const message = {
+            _id: messageId,
+            channelId: channelId,
+            body: newMessage,
+            author: 'Amaan',
+            avatar: avatar,
+            me: true,
+        }
+
+
     }
 
     addTestMessages() {
@@ -179,7 +200,7 @@ export default class Messenger extends Component {
                             }} value={this.state.newMessage} placeholder="Write your message"/>
                         </div>
                         <div className="actions">
-                            <button className="send">Send</button>
+                            <button onClick={this.handleSend} className="send">Send</button>
                         </div>
                     </div>
                 </div>
