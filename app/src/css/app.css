@@ -118,14 +118,33 @@ body {
 
 .channels .channel {
   display: flex;
-  margin: 12px; }
-  .channels .channel .user-image img {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 8px 0;
+}
+
+.channels .channel .user-image {
+    width: 30px;
+}
+
+.channels .channel .user-image img {
     width: 30px;
     height: 30px;
-    border-radius: 50%; }
-  .channels .channel .channel-info h2 {
+    border-radius: 50%;
+}
+
+.channels .channel .channel-info {
+    flex-grow: 1;
+    padding-left: 8px;
+}
+
+.channels .channel .channel-info h2 {
     font-size: 14px;
-    font-weight: 600; }
+    font-weight: 600;
+}
+
+.channels .channel .channel-info p {
+    font-size: 12px;
+}
 
 .members .member {
   display: flex;
@@ -138,6 +157,7 @@ body {
       width: 30px;
       border-radius: 50%; }
   .members .member .member-info {
+      padding-left: 8px;
     flex-grow: 1; }
     .members .member .member-info h2 {
       font-size: 14px; }

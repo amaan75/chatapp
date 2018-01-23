@@ -38,7 +38,8 @@ body {
         line-height: $header-height;
         padding: 0 10px;
 
-        button {}
+        button {
+        }
       }
     }
 
@@ -161,7 +162,8 @@ body {
     .message-body {
       padding-left: 10px;
 
-      .message-author {}
+      .message-author {
+      }
 
       .message-text {
         background: $body-color;
@@ -186,22 +188,26 @@ body {
 .channels {
   .channel {
     display: flex;
-    margin: 12px;
+    border-bottom: 1px solid $border-color;
+    padding: 8px 0;
     .user-image {
+      width: 30px;
       img {
         width: 30px;
         height: 30px;
         border-radius: 50%;
       }
     }
-
     .channel-info {
+      flex-grow: 1;
+      padding-left: 8px;
       h2 {
         font-size: 14px;
         font-weight: 600;
       }
-
-      p {}
+      p {
+        font-size: 12px;
+      }
     }
   }
 }
@@ -223,16 +229,17 @@ body {
     }
 
     .member-info {
+      padding-left: 8px;
       flex-grow: 1;
-
       h2 {
         font-size: 14px;
       }
-
       p {
+
         font-size: 12px;
       }
     }
+
   }
 }
 
