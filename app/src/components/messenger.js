@@ -16,12 +16,11 @@ export default class Messenger extends Component {
         };
         this._onResize = this._onResize.bind(this);
         this.handleSend = this.handleSend.bind(this);
+        Messenger.renderMessage = Messenger.renderMessage.bind(this);
     }
 
-    _onResize() {
-
-        this.setState({height: window.innerHeight})
-        console.log(`window is resizing`);
+    static renderMessage(message) {
+        return (<div dangerouslySetInnerHTML={{__html: _.get(message, 'body')}}/>)
     }
 
     componentDidMount() {
@@ -29,6 +28,12 @@ export default class Messenger extends Component {
 
         window.addEventListener(`resize`, this._onResize);
         this.addTestMessages();
+    }
+
+    _onResize() {
+
+        this.setState({height: window.innerHeight});
+        console.log(`window is resizing`);
     }
 
     handleSend() {
@@ -58,6 +63,7 @@ export default class Messenger extends Component {
 
     }
 
+    //clear text method to stop code repetition
     clearMessageArea() {
         //set text area as blank later on
         this.setState({
@@ -140,8 +146,9 @@ export default class Messenger extends Component {
                         <button>New Message</button>
                     </div>
                 </div>
-                <div className="content">
-                    <h2>Amaan</h2>
+                <div className="content">{//settings channel title
+                }
+                    <h2>{_.get(activeChannel, 'title', '')}</h2>
                 </div>
                 <div className="right">
 
@@ -160,10 +167,11 @@ export default class Messenger extends Component {
 
                         {channels.map((channel, key) => {
                             return (
-                                <div onClick={(key) => {
+                                <div onClick={() => {
                                     store.setActiveChannel(channel._id);
                                     console.log(`The chanel id is ${channel._id}`);
-                                }} key={key} className="channel">
+                                }} key={key}
+                                     className={classNames('channel', {'active': _.get(activeChannel, '_id') === _.get(channel, '_id', null)})}>
                                     <div className="user-image">
                                         <img src={avatar} alt="empty avatar"/>
                                     </div>
@@ -196,7 +204,7 @@ export default class Messenger extends Component {
                                             }
                                         </div>
                                         <div className="message-text">
-                                            <p>{message.body}</p>
+                                            {Messenger.renderMessage(message)}
                                         </div>
                                     </div>
                                 </div>);
@@ -210,7 +218,7 @@ export default class Messenger extends Component {
                         <div className="text-input">
                             <textarea onKeyUp={(event) => {
 
-                                if (event.key === `Enter`) {
+                                if (event.key === `Enter` && !event.shiftKey) {
                                     this.handleSend();
                                     this.clearMessageArea();
                                 }
