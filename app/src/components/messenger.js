@@ -58,6 +58,7 @@ export default class Messenger extends Component {
 
     }
 
+    //clear text method to stop code repetition
     clearMessageArea() {
         //set text area as blank later on
         this.setState({
