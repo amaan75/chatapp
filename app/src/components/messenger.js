@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {OrderedMap} from 'immutable';
+import {ObjectId} from '../helpers/objectid'
 import avatar from '../images/avatar.jpg';
 import classNames from 'classnames';
 import _ from 'lodash';
