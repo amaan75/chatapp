@@ -38,17 +38,22 @@ export default class Messenger extends Component {
         const messageId = new ObjectId().toString();
         const channel = store.getActiveChannel();
         const channelId = _.get(channel, '_id', null);
+        const currentUser = store.getCurrentUser();
 
         const message = {
             _id: messageId,
             channelId: channelId,
             body: newMessage,
-            author: 'Amaan',
+            author: _.get(currentUser, 'name', null),
             avatar: avatar,
             me: true,
-        }
+        };
+        store.addMessage(messageId, message);
 
-
+        //set text area as blank later on
+        this.setState({
+            newMessage: '',
+        })
     }
 
     addTestMessages() {
@@ -119,9 +124,9 @@ export default class Messenger extends Component {
         const members = store.getMembersFromChannel(activeChannel);
 
         // if (activeChannel) {
-        //   console.log(`The active channel is ${activeChannel}`);
-        //   console.log(`Messages in channel${activeChannel._id} and messages are${messages}`)
-        //}
+        //    console.log(`The active channel is ${activeChannel}`);
+        //    console.log(`Messages in channel${activeChannel._id} and messages are${messages}`)
+        // }
 
         return (<div style={style} className="app-messenger">
             <div className="header">
@@ -194,6 +199,8 @@ export default class Messenger extends Component {
                         }
 
                     </div>
+
+
                     <div className="messenger-input">
                         <div className="text-input">
                             <textarea onChange={(event) => {
@@ -214,7 +221,7 @@ export default class Messenger extends Component {
 
                         {members.map((member, key) => {
                             return (
-                                <div className="member">
+                                <div key={key} className="member">
                                     <div className="user-image">
                                         <img src={avatar} alt="empty avatar"/>
                                     </div>
