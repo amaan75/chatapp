@@ -48,8 +48,17 @@ export default class Messenger extends Component {
             avatar: avatar,
             me: true,
         };
-        store.addMessage(messageId, message);
 
+
+        if (message.body === `\n`) {
+            return
+        }
+        store.addMessage(messageId, message);
+        this.clearMessageArea();
+
+    }
+
+    clearMessageArea() {
         //set text area as blank later on
         this.setState({
             newMessage: '',
@@ -120,13 +129,9 @@ export default class Messenger extends Component {
         const {store} = this.props;
         const channels = store.getChannels();
         const activeChannel = store.getActiveChannel();
-        const messages = store.getMessagesFromChannel(activeChannel);//store.getMessages();
+        const messages = store.getMessagesFromChannel(activeChannel);
         const members = store.getMembersFromChannel(activeChannel);
 
-        // if (activeChannel) {
-        //    console.log(`The active channel is ${activeChannel}`);
-        //    console.log(`Messages in channel${activeChannel._id} and messages are${messages}`)
-        // }
 
         return (<div style={style} className="app-messenger">
             <div className="header">
@@ -203,7 +208,15 @@ export default class Messenger extends Component {
 
                     <div className="messenger-input">
                         <div className="text-input">
-                            <textarea onChange={(event) => {
+                            <textarea onKeyUp={(event) => {
+
+                                if (event.key === `Enter`) {
+                                    this.handleSend();
+                                    this.clearMessageArea();
+                                }
+
+
+                            }} onChange={(event) => {
                                 this.setState({newMessage: _.get(event, 'target.value')});
                             }} value={this.state.newMessage} placeholder="Write your message"/>
                         </div>
